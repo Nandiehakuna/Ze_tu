@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import Hero from '@/components/Hero';
 import ProblemSection from '@/components/ProblemSection';
 import HowItWorks from '@/components/HowItWorks';
@@ -6,7 +8,7 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen w-full bg-[#1a1a1a] text-[#fafaf6]">
+    <main className="min-h-screen w-full">
       <Hero />
       <ProblemSection />
       <HowItWorks />

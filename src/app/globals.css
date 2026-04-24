@@ -52,6 +52,7 @@
   --font-sans: 'Poppins', sans-serif;
   --font-mono: 'Poppins', sans-serif;
   --font-heading: 'Poppins', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
 
   --radius-lg: 1rem;
   --radius-md: calc(1rem - 2px);
@@ -109,7 +110,7 @@
   }
   
   html {
-    @apply font-poppins;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
   }
   
   /* Light Mode - Default */
@@ -118,7 +119,7 @@
   }
   
   html:not(.dark) body {
-    @apply text-[#1a1a1a] font-poppins;
+    @apply text-[#1a1a1a];
     background: 
       radial-gradient(ellipse 100% 80% at 50% -20%, rgba(244, 164, 38, 0.05) 0%, transparent 40%),
       radial-gradient(ellipse 120% 100% at 50% 100%, rgba(244, 164, 38, 0.02) 0%, transparent 50%),
@@ -133,7 +134,7 @@
   }
   
   html.dark body {
-    @apply text-[#fafaf6] font-poppins;
+    @apply text-[#fafaf6];
     background: 
       radial-gradient(ellipse 100% 80% at 50% -20%, rgba(244, 164, 38, 0.08) 0%, transparent 40%),
       radial-gradient(ellipse 120% 100% at 50% 100%, rgba(244, 164, 38, 0.04) 0%, transparent 50%),
