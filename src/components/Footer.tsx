@@ -42,7 +42,11 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#1a1a1a] border-t border-[#333333] py-16 px-4">
+    <footer className={`w-full transition-colors duration-300 py-16 px-4 ${
+      currentTheme === 'dark'
+        ? 'bg-[#1a1a1a] border-t border-[#333333]'
+        : 'bg-[#fafaf6] border-t border-[#e8e4dc]'
+    }`}>
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
         <motion.div
@@ -62,19 +66,31 @@ export default function Footer() {
             <div className="flex gap-4 mt-6">
               <a
                 href="#"
-                className="w-10 h-10 bg-[#242424] border border-[#333333] rounded-lg flex items-center justify-center hover:border-[#f4a426] transition"
+                className={`w-10 h-10 rounded-lg flex items-center justify-center hover:border-[#f4a426] transition ${
+                  currentTheme === 'dark'
+                    ? 'bg-[#242424] border border-[#333333]'
+                    : 'bg-white border border-[#e8e4dc]'
+                }`}
               >
                 <span className="text-[#f4a426] text-lg">𝕏</span>
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-[#242424] border border-[#333333] rounded-lg flex items-center justify-center hover:border-[#f4a426] transition"
+                className={`w-10 h-10 rounded-lg flex items-center justify-center hover:border-[#f4a426] transition ${
+                  currentTheme === 'dark'
+                    ? 'bg-[#242424] border border-[#333333]'
+                    : 'bg-white border border-[#e8e4dc]'
+                }`}
               >
                 <span className="text-[#f4a426]">f</span>
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-[#242424] border border-[#333333] rounded-lg flex items-center justify-center hover:border-[#f4a426] transition"
+                className={`w-10 h-10 rounded-lg flex items-center justify-center hover:border-[#f4a426] transition ${
+                  currentTheme === 'dark'
+                    ? 'bg-[#242424] border border-[#333333]'
+                    : 'bg-white border border-[#e8e4dc]'
+                }`}
               >
                 <span className="text-[#f4a426]">in</span>
               </a>
@@ -84,7 +100,9 @@ export default function Footer() {
           {/* Links Sections */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <motion.div key={category} variants={itemVariants} className="col-span-1">
-              <h4 className="text-[#fafaf6] font-semibold mb-4 text-sm uppercase tracking-widest">
+              <h4 className={`font-semibold mb-4 text-sm uppercase tracking-widest transition-colors duration-300 ${
+                currentTheme === 'dark' ? 'text-[#fafaf6]' : 'text-[#1a1a1a]'
+              }`}>
                 {category}
               </h4>
               <ul className="space-y-3">
@@ -108,7 +126,9 @@ export default function Footer() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: false, margin: '-50px' }}
-          className="border-t border-[#333333] pt-8 flex flex-col md:flex-row items-center justify-between gap-6"
+          className={`pt-8 flex flex-col md:flex-row items-center justify-between gap-6 transition-colors duration-300 ${
+            currentTheme === 'dark' ? 'border-t border-[#333333]' : 'border-t border-[#e8e4dc]'
+          }`}
         >
           <p className="text-[#6b7280] text-sm">
             © {currentYear} Zetu. All rights reserved.

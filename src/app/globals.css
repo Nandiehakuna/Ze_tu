@@ -110,10 +110,29 @@
   
   html {
     @apply font-poppins;
+  }
+  
+  /* Light Mode - Default */
+  html:not(.dark) {
+    background: linear-gradient(135deg, #fafaf6 0%, #f9f7f2 50%, #f4f0e8 100%);
+  }
+  
+  html:not(.dark) body {
+    @apply text-[#1a1a1a] font-poppins;
+    background: 
+      radial-gradient(ellipse 100% 80% at 50% -20%, rgba(244, 164, 38, 0.05) 0%, transparent 40%),
+      radial-gradient(ellipse 120% 100% at 50% 100%, rgba(244, 164, 38, 0.02) 0%, transparent 50%),
+      linear-gradient(135deg, #fafaf6 0%, #f9f7f2 50%, #f4f0e8 100%);
+    background-attachment: fixed;
+    position: relative;
+  }
+  
+  /* Dark Mode */
+  html.dark {
     background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #1f1814 100%);
   }
   
-  body {
+  html.dark body {
     @apply text-[#fafaf6] font-poppins;
     background: 
       radial-gradient(ellipse 100% 80% at 50% -20%, rgba(244, 164, 38, 0.08) 0%, transparent 40%),
@@ -121,16 +140,20 @@
       linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #1f1814 100%);
     background-attachment: fixed;
     position: relative;
-    
-    /* Premium depth effect */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at 50% -10%, rgba(244, 164, 38, 0.15) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
-    }
+  }
+  
+  body {
+    @apply transition-colors duration-300;
+  }
+  
+  /* Premium depth effect for dark mode */
+  html.dark body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% -10%, rgba(244, 164, 38, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
   }
   
   main {
