@@ -1,8 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
+import { useState, useEffect } from 'react';
 
 export default function FeaturesSection() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentTheme = mounted ? theme : 'light';
   const rates = [
     {
       name: 'Traditional Banks',
@@ -75,75 +85,21 @@ export default function FeaturesSection() {
   };
 
   return (
-    <div className="w-full bg-[#1a1a1a] py-20 px-4">
+    <div className={`w-full transition-colors duration-300 py-20 px-4 ${
+      currentTheme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-[#fafaf6]'
+    }`}>
       <div className="max-w-7xl mx-auto">
-        {/* Rates Comparison */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: false, margin: '-100px' }}
-          className="mb-20"
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#fafaf6] mb-4">
-              The Real Cost of Sending Money Home
-            </h2>
-            <p className="text-[#6b7280] text-lg">
-              Zetu vs. Everyone Else
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {rates.map((rate, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, margin: '-50px' }}
-                className={`rounded-2xl p-8 border transition-all ${
-                  rate.highlight
-                    ? 'bg-gradient-to-br from-[#f4a426]/20 to-[#c4820a]/10 border-[#f4a426] shadow-lg shadow-[#f4a426]/20'
-                    : 'bg-[#242424] border-[#333333]'
-                }`}
-              >
-                {rate.highlight && (
-                  <div className="absolute top-0 right-0 bg-[#f4a426] text-[#1a1a1a] px-4 py-1 rounded-bl-xl text-xs font-bold">
-                    ZETU
-                  </div>
-                )}
-
-                <h3 className="text-xl font-bold text-[#fafaf6] mb-2">
-                  {rate.name}
-                </h3>
-                <p className="text-[#6b7280] text-sm mb-6">
-                  {rate.description}
-                </p>
-
-                <div className="space-y-4 pt-6 border-t border-[#333333]">
-                  <div>
-                    <p className="text-[#6b7280] text-sm mb-1">Fee</p>
-                    <p className={`text-3xl font-bold ${
-                      rate.highlight ? 'text-[#f4a426]' : 'text-[#fafaf6]'
-                    }`}>
-                      {rate.fee}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-[#6b7280] text-sm mb-1">Speed</p>
-                    <p className="text-lg font-semibold text-[#fafaf6]">
-                      {rate.speed}
-                    </p>
-                  </div>
-                </div>
-
-                {rate.highlight && (
-                  <button className="w-full mt-8 bg-[#f4a426] text-[#1a1a1a] py-3 rounded-xl font-semibold hover:bg-[#c4820a] transition">
-                    Get Started
-                  </button>
-                )}
-              </motion.div>
+        {/* Header */}
+        <motion.div className="text-center mb-16">
+          <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-colors duration-300 ${
+            currentTheme === 'dark' ? 'text-[#fafaf6]' : 'text-[#1a1a1a]'
+          }`}>
+            Fair Fees, Fast Speed, No Excuses
+          </h2>
+          <p className="text-[#6b7280] text-lg max-w-3xl mx-auto">
+            See why Zetu is the smarter choice for diaspora remittances.
+          </p>
+        </motion.div>
             ))}
           </div>
         </motion.div>

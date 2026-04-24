@@ -2,13 +2,20 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
+import { useTheme } from '@/context/ThemeContext';
 
 export default function ProblemSection() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start center', 'end center'],
   });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const [displayValue, setDisplayValue] = useState(1450);
   const [animationPhase, setAnimationPhase] = useState(0);
@@ -47,10 +54,14 @@ export default function ProblemSection() {
     return `£${(val / 100).toFixed(2)}`;
   };
 
+  const currentTheme = mounted ? theme : 'light';
+
   return (
     <div
       ref={containerRef}
-      className="relative w-full min-h-screen bg-[#1a1a1a] py-20 px-4 overflow-hidden"
+      className={`relative w-full min-h-screen transition-colors duration-300 py-20 px-4 overflow-hidden ${
+        currentTheme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-[#fafaf6]'
+      }`}
     >
       <div className="max-w-7xl mx-auto h-full flex flex-col items-center justify-center">
         {/* Main Number - Animated Counter */}
@@ -64,7 +75,7 @@ export default function ProblemSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-xl md:text-2xl text-[#6b7280] max-w-2xl mx-auto"
+            className={`text-xl md:text-2xl text-[#6b7280] max-w-2xl mx-auto transition-colors duration-300`}
           >
             That's what you lose sending £200 home. Every time.
           </motion.p>
@@ -77,7 +88,9 @@ export default function ProblemSection() {
               transition={{ duration: 0.6 }}
               className="pt-12"
             >
-              <p className="text-4xl md:text-5xl font-bold text-[#fafaf6]">
+              <p className={`text-4xl md:text-5xl font-bold transition-colors duration-300 ${
+                currentTheme === 'dark' ? 'text-[#fafaf6]' : 'text-[#1a1a1a]'
+              }`}>
                 This is Zetu.
               </p>
             </motion.div>
