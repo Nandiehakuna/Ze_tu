@@ -1,17 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-poppins);
-  --font-mono: var(--font-poppins);
-  --font-heading: var(--font-poppins);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
   --color-background-dark: var(--background-dark);
   --color-card-dark: var(--card-dark);
   --color-elevated: var(--elevated);
@@ -21,7 +48,14 @@
   --color-text-muted: var(--text-muted);
   --color-success: var(--success);
   --color-border-dark: var(--border-dark);
+
+  --font-sans: 'Poppins', sans-serif;
+  --font-mono: 'Poppins', sans-serif;
+  --font-heading: 'Poppins', sans-serif;
+
   --radius-lg: 1rem;
+  --radius-md: calc(1rem - 2px);
+  --radius-sm: calc(1rem - 4px);
 }
 
 :root {
@@ -34,7 +68,7 @@
   --text-muted: #6b7280;
   --success: #22c55e;
   --border-dark: #333333;
-  
+
   --background: #1a1a1a;
   --foreground: #fafaf6;
   --card: #242424;
@@ -74,9 +108,9 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-[#1a1a1a] text-[#fafaf6] font-poppins;
+    @apply bg-[#1a1a1a] text-[#fafaf6];
   }
   html {
-    @apply font-poppins bg-[#1a1a1a];
+    background-color: #1a1a1a;
   }
 }
