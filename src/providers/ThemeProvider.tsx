@@ -24,11 +24,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme(initialTheme);
     
     // Apply theme to HTML element
-    if (initialTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    document.documentElement.classList.toggle('dark', initialTheme === 'dark');
     
     setMounted(true);
   }, []);
@@ -38,21 +34,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       const newTheme = prevTheme === 'light' ? 'dark' : 'light';
       localStorage.setItem('zetu-theme', newTheme);
       
-      if (newTheme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
+      document.documentElement.classList.toggle('dark', newTheme === 'dark');
       
       return newTheme;
     });
   };
 
-  // Prevent flash of wrong theme
-  if (!mounted) {
-    return <>{children}</>;
-  }
-
+  // Always render children to prevent hydration mismatch
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
