@@ -1,8 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
+import { useState, useEffect } from 'react';
 
 export default function Footer() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentTheme = mounted ? theme : 'light';
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {

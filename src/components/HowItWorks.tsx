@@ -1,18 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useTheme } from '@/context/ThemeContext';
-import { useState, useEffect } from 'react';
 
 export default function HowItWorks() {
-  const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const currentTheme = mounted ? theme : 'light';
   const steps = [
     {
       number: '01',
@@ -61,9 +51,7 @@ export default function HowItWorks() {
   };
 
   return (
-    <div className={`w-full transition-colors duration-300 py-20 px-4 ${
-      currentTheme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-[#fafaf6]'
-    }`}>
+    <div className="w-full bg-[#1a1a1a] py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -73,9 +61,7 @@ export default function HowItWorks() {
           viewport={{ once: false, margin: '-100px' }}
           className="text-center mb-16"
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-colors duration-300 ${
-            currentTheme === 'dark' ? 'text-[#fafaf6]' : 'text-[#1a1a1a]'
-          }`}>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#fafaf6] mb-4">
             How It Works
           </h2>
           <p className="text-[#6b7280] text-lg max-w-2xl mx-auto">
@@ -95,11 +81,7 @@ export default function HowItWorks() {
             <motion.div
               key={index}
               variants={itemVariants}
-              className={`rounded-2xl p-8 hover:border-[#f4a426] transition-all duration-300 hover:shadow-lg hover:shadow-[#f4a426]/10 ${
-                currentTheme === 'dark'
-                  ? 'bg-[#242424] border border-[#333333]'
-                  : 'bg-white border border-[#e8e4dc]'
-              }`}
+              className="bg-[#242424] border border-[#333333] rounded-2xl p-8 hover:border-[#f4a426] transition-all duration-300 hover:shadow-lg hover:shadow-[#f4a426]/10"
             >
               <div className="flex items-start gap-6">
                 <div className="flex flex-col items-center">
@@ -111,9 +93,7 @@ export default function HowItWorks() {
                   )}
                 </div>
                 <div className="flex-1 pt-2">
-                  <h3 className={`text-2xl font-bold mb-3 transition-colors duration-300 ${
-                    currentTheme === 'dark' ? 'text-[#fafaf6]' : 'text-[#1a1a1a]'
-                  }`}>
+                  <h3 className="text-2xl font-bold text-[#fafaf6] mb-3">
                     {step.title}
                   </h3>
                   <p className="text-[#6b7280] leading-relaxed">
@@ -135,17 +115,11 @@ export default function HowItWorks() {
         >
           {/* Left: Narrative */}
           <div className="lg:col-span-2 space-y-6">
-            <div className={`rounded-2xl p-8 transition-colors duration-300 ${
-              currentTheme === 'dark'
-                ? 'bg-[#242424] border border-[#333333]'
-                : 'bg-white border border-[#e8e4dc]'
-            }`}>
+            <div className="bg-[#242424] border border-[#333333] rounded-2xl p-8">
               <p className="text-[#f4a426] text-sm font-semibold uppercase tracking-widest mb-4">
                 The Story Behind Zetu
               </p>
-              <h3 className={`text-3xl font-bold mb-6 transition-colors duration-300 ${
-                currentTheme === 'dark' ? 'text-[#fafaf6]' : 'text-[#1a1a1a]'
-              }`}>
+              <h3 className="text-3xl font-bold text-[#fafaf6] mb-6">
                 Remittances the way your family talks.
               </h3>
               <p className="text-[#6b7280] text-lg leading-relaxed mb-4">
@@ -157,11 +131,7 @@ export default function HowItWorks() {
             </div>
 
             {/* Device Mockup - Smartphone */}
-            <div className={`rounded-2xl p-6 flex items-center justify-center min-h-80 transition-colors duration-300 ${
-              currentTheme === 'dark'
-                ? 'bg-[#242424] border border-[#333333]'
-                : 'bg-white border border-[#e8e4dc]'
-            }`}>
+            <div className="bg-[#242424] border border-[#333333] rounded-2xl p-6 flex items-center justify-center min-h-80">
               <div className="relative w-full max-w-xs">
                 <div className="bg-gradient-to-b from-[#333333] to-[#242424] rounded-3xl overflow-hidden border-8 border-[#1a1a1a] shadow-2xl">
                   {/* Phone Screen */}
@@ -189,16 +159,10 @@ export default function HowItWorks() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
-              className={`rounded-2xl p-6 hover:border-[#f4a426] transition-all ${
-                currentTheme === 'dark'
-                  ? 'bg-[#242424] border border-[#333333]'
-                  : 'bg-white border border-[#e8e4dc]'
-              }`}
+              className="bg-[#242424] border border-[#333333] rounded-2xl p-6 hover:border-[#f4a426] transition-all"
             >
               <div className="text-3xl mb-3">🎯</div>
-              <h4 className={`font-bold mb-2 transition-colors duration-300 ${
-                currentTheme === 'dark' ? 'text-[#fafaf6]' : 'text-[#1a1a1a]'
-              }`}>Intent-Driven</h4>
+              <h4 className="font-bold text-[#fafaf6] mb-2">Intent-Driven</h4>
               <p className="text-sm text-[#6b7280]">
                 AI understands context. Not just voice commands.
               </p>
@@ -208,16 +172,10 @@ export default function HowItWorks() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
-              className={`rounded-2xl p-6 hover:border-[#f4a426] transition-all ${
-                currentTheme === 'dark'
-                  ? 'bg-[#242424] border border-[#333333]'
-                  : 'bg-white border border-[#e8e4dc]'
-              }`}
+              className="bg-[#242424] border border-[#333333] rounded-2xl p-6 hover:border-[#f4a426] transition-all"
             >
               <div className="text-3xl mb-3">🔒</div>
-              <h4 className={`font-bold mb-2 transition-colors duration-300 ${
-                currentTheme === 'dark' ? 'text-[#fafaf6]' : 'text-[#1a1a1a]'
-              }`}>Secure</h4>
+              <h4 className="font-bold text-[#fafaf6] mb-2">Secure</h4>
               <p className="text-sm text-[#6b7280]">
                 Bitcoin settlement. No middlemen. No delays.
               </p>
@@ -227,16 +185,10 @@ export default function HowItWorks() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
-              className={`rounded-2xl p-6 hover:border-[#f4a426] transition-all ${
-                currentTheme === 'dark'
-                  ? 'bg-[#242424] border border-[#333333]'
-                  : 'bg-white border border-[#e8e4dc]'
-              }`}
+              className="bg-[#242424] border border-[#333333] rounded-2xl p-6 hover:border-[#f4a426] transition-all"
             >
               <div className="text-3xl mb-3">🌍</div>
-              <h4 className={`font-bold mb-2 transition-colors duration-300 ${
-                currentTheme === 'dark' ? 'text-[#fafaf6]' : 'text-[#1a1a1a]'
-              }`}>Borderless</h4>
+              <h4 className="font-bold text-[#fafaf6] mb-2">Borderless</h4>
               <p className="text-sm text-[#6b7280]">
                 Works for any diaspora. Any receiving country.
               </p>
@@ -246,16 +198,10 @@ export default function HowItWorks() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 }}
-              className={`rounded-2xl p-6 hover:border-[#f4a426] transition-all ${
-                currentTheme === 'dark'
-                  ? 'bg-[#242424] border border-[#333333]'
-                  : 'bg-white border border-[#e8e4dc]'
-              }`}
+              className="bg-[#242424] border border-[#333333] rounded-2xl p-6 hover:border-[#f4a426] transition-all"
             >
               <div className="text-3xl mb-3">⚡</div>
-              <h4 className={`font-bold mb-2 transition-colors duration-300 ${
-                currentTheme === 'dark' ? 'text-[#fafaf6]' : 'text-[#1a1a1a]'
-              }`}>Instant</h4>
+              <h4 className="font-bold text-[#fafaf6] mb-2">Instant</h4>
               <p className="text-sm text-[#6b7280]">
                 Settlement in seconds. Local currency in minutes.
               </p>
