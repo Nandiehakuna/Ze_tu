@@ -25,7 +25,12 @@ export default function Hero() {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-[#1a1a1a] pt-20 pb-20 px-4">
+    <div className="relative w-full min-h-screen pt-20 pb-20 px-4">
+      {/* Premium spotlight glow - centered on headline */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-[#f4a426] via-[#f4a426]/5 to-transparent opacity-20 blur-3xl rounded-full"></div>
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-b from-[#f4a426] to-transparent opacity-10 blur-2xl rounded-full"></div>
+      </div>
       {/* Header Navigation */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
@@ -56,7 +61,7 @@ export default function Hero() {
       </motion.header>
 
       {/* Hero Content */}
-      <div className="max-w-7xl mx-auto pt-24">
+      <div className="max-w-7xl mx-auto pt-24 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
