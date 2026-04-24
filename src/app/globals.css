@@ -52,6 +52,7 @@
   --font-sans: 'Poppins', sans-serif;
   --font-mono: 'Poppins', sans-serif;
   --font-heading: 'Poppins', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
 
   --radius-lg: 1rem;
   --radius-md: calc(1rem - 2px);
@@ -109,28 +110,51 @@
   }
   
   html {
-    @apply font-poppins;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  }
+  
+  /* Light Mode - Default */
+  html:not(.dark) {
+    background: linear-gradient(135deg, #fafaf6 0%, #f9f7f2 50%, #f4f0e8 100%);
+  }
+  
+  html:not(.dark) body {
+    @apply text-[#1a1a1a];
+    background: 
+      radial-gradient(ellipse 100% 80% at 50% -20%, rgba(244, 164, 38, 0.05) 0%, transparent 40%),
+      radial-gradient(ellipse 120% 100% at 50% 100%, rgba(244, 164, 38, 0.02) 0%, transparent 50%),
+      linear-gradient(135deg, #fafaf6 0%, #f9f7f2 50%, #f4f0e8 100%);
+    background-attachment: fixed;
+    position: relative;
+  }
+  
+  /* Dark Mode */
+  html.dark {
     background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #1f1814 100%);
   }
   
-  body {
-    @apply text-[#fafaf6] font-poppins;
+  html.dark body {
+    @apply text-[#fafaf6];
     background: 
       radial-gradient(ellipse 100% 80% at 50% -20%, rgba(244, 164, 38, 0.08) 0%, transparent 40%),
       radial-gradient(ellipse 120% 100% at 50% 100%, rgba(244, 164, 38, 0.04) 0%, transparent 50%),
       linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #1f1814 100%);
     background-attachment: fixed;
     position: relative;
-    
-    /* Premium depth effect */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at 50% -10%, rgba(244, 164, 38, 0.15) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
-    }
+  }
+  
+  body {
+    @apply transition-colors duration-300;
+  }
+  
+  /* Premium depth effect for dark mode */
+  html.dark body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% -10%, rgba(244, 164, 38, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
   }
   
   main {

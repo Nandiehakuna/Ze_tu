@@ -2,8 +2,11 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
+import { useTheme } from '@/providers/ThemeProvider';
 
 export default function ProblemSection() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -12,6 +15,12 @@ export default function ProblemSection() {
 
   const [displayValue, setDisplayValue] = useState(1450);
   const [animationPhase, setAnimationPhase] = useState(0);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentTheme = mounted ? theme : 'light';
 
   // Transform scroll progress to values
   const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
@@ -50,12 +59,14 @@ export default function ProblemSection() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full min-h-screen bg-[#1a1a1a] py-20 px-4 overflow-hidden"
+      className={`relative w-full min-h-screen py-20 px-4 overflow-hidden transition-colors duration-300 ${
+        currentTheme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-[#fafaf6]'
+      }`}
     >
       <div className="max-w-7xl mx-auto h-full flex flex-col items-center justify-center">
         {/* Main Number - Animated Counter */}
         <motion.div style={{ opacity }} className="text-center space-y-8">
-          <div className="text-9xl md:text-10xl font-bold text-[#f4a426] font-poppins tabular-nums">
+          <div className="text-9xl md:text-10xl font-bold text-[#f4a426] font-sans tabular-nums">
             {formatValue(displayValue)}
           </div>
 
@@ -77,7 +88,9 @@ export default function ProblemSection() {
               transition={{ duration: 0.6 }}
               className="pt-12"
             >
-              <p className="text-4xl md:text-5xl font-bold text-[#fafaf6]">
+              <p className={`text-4xl md:text-5xl font-bold transition-colors duration-300 ${
+                currentTheme === 'dark' ? 'text-[#fafaf6]' : 'text-[#1a1a1a]'
+              }`}>
                 This is Zetu.
               </p>
             </motion.div>
