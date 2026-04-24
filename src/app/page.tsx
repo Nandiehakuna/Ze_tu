@@ -1,12 +1,16 @@
-import Hero from '@/components/Hero';
-import ProblemSection from '@/components/ProblemSection';
-import HowItWorks from '@/components/HowItWorks';
-import FeaturesSection from '@/components/FeaturesSection';
-import Footer from '@/components/Footer';
+'use client';
+
+import dynamic from 'next/dynamic';
+
+const Hero = dynamic(() => import('@/components/Hero'), { ssr: false });
+const ProblemSection = dynamic(() => import('@/components/ProblemSection'), { ssr: false });
+const HowItWorks = dynamic(() => import('@/components/HowItWorks'), { ssr: false });
+const FeaturesSection = dynamic(() => import('@/components/FeaturesSection'), { ssr: false });
+const Footer = dynamic(() => import('@/components/Footer'), { ssr: false });
 
 export default function Home() {
   return (
-    <main className="min-h-screen w-full bg-[#1a1a1a] text-[#fafaf6]">
+    <main className="min-h-screen w-full">
       <Hero />
       <ProblemSection />
       <HowItWorks />
