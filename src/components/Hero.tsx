@@ -2,8 +2,11 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useTheme } from '@/providers/ThemeProvider';
 
 export default function Hero() {
+  const { theme, toggleTheme } = useTheme();
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
