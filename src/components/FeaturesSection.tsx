@@ -1,8 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 export default function FeaturesSection() {
+  const router = useRouter();
   const rates = [
     {
       name: 'Traditional Banks',
@@ -139,7 +141,7 @@ export default function FeaturesSection() {
                 </div>
 
                 {rate.highlight && (
-                  <button className="w-full mt-8 bg-[#f4a426] text-[#1a1a1a] py-3 rounded-xl font-semibold hover:bg-[#c4820a] transition">
+                  <button onClick={() => router.push('/onboarding')} className="w-full mt-8 bg-[#f4a426] text-[#1a1a1a] py-3 rounded-xl font-semibold hover:bg-[#c4820a] transition">
                     Get Started
                   </button>
                 )}
@@ -237,7 +239,7 @@ export default function FeaturesSection() {
           <p className="text-[#6b7280] mb-8 text-lg">
             Your first £200 transfer is free. No credit card required.
           </p>
-          <button className="bg-[#f4a426] text-[#1a1a1a] px-8 py-4 rounded-xl font-semibold hover:bg-[#c4820a] transition text-lg">
+          <button onClick={() => router.push('/onboarding')} className="bg-[#f4a426] text-[#1a1a1a] px-8 py-4 rounded-xl font-semibold hover:bg-[#c4820a] transition text-lg">
             Get Started with Zetu
           </button>
         </motion.div>

@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useTheme } from '@/providers/ThemeProvider';
 
 export default function Hero() {
+  const router = useRouter();
   const { theme, toggleTheme } = useTheme();
   
   const containerVariants = {
@@ -76,7 +78,7 @@ export default function Hero() {
                 </svg>
               )}
             </button>
-            <button className="bg-[#f4a426] text-[#1a1a1a] px-6 py-2 rounded-lg font-semibold hover:bg-[#c4820a] transition text-sm">
+            <button onClick={() => router.push('/onboarding')} className="bg-[#f4a426] text-[#1a1a1a] px-6 py-2 rounded-lg font-semibold hover:bg-[#c4820a] transition text-sm">
               Get Started
             </button>
           </div>
@@ -141,7 +143,7 @@ export default function Hero() {
               variants={itemVariants}
               className="pt-4"
             >
-              <button className="relative group bg-[#f4a426] text-[#1a1a1a] px-8 py-4 rounded-full font-semibold hover:bg-[#c4820a] transition text-lg w-full sm:w-auto border-4 border-transparent hover:border-[#f4a426] hover:bg-transparent hover:text-[#f4a426]">
+              <button onClick={() => router.push('/onboarding')} className="relative group bg-[#f4a426] text-[#1a1a1a] px-8 py-4 rounded-full font-semibold hover:bg-[#c4820a] transition text-lg w-full sm:w-auto border-4 border-transparent hover:border-[#f4a426] hover:bg-transparent hover:text-[#f4a426]">
                 Send your first £200 free
               </button>
               <p className="text-[#6b7280] text-sm mt-3">
