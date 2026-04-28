@@ -48,17 +48,17 @@ export default function Hero() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="text-2xl font-bold text-[#f4a426]">ZETU</div>
           <nav className="hidden md:flex items-center gap-12">
-            <a href="#" className="text-[#1a1a1a] dark:text-[#fafaf6] text-sm hover:text-[#f4a426] transition border-b-2 border-[#f4a426]">
-              HERITAGE
+            <a href="#features" className="text-[#1a1a1a] dark:text-[#fafaf6] text-sm hover:text-[#f4a426] transition border-b-2 border-[#f4a426]">
+              HOW IT WORKS
             </a>
-            <a href="#" className="text-[#6b7280] text-sm hover:text-[#1a1a1a] dark:hover:text-[#fafaf6] transition">
-              ARCHIVES
+            <a href="#rates" className="text-[#6b7280] text-sm hover:text-[#1a1a1a] dark:hover:text-[#fafaf6] transition">
+              RATES
             </a>
-            <a href="#" className="text-[#6b7280] text-sm hover:text-[#1a1a1a] dark:hover:text-[#fafaf6] transition">
-              VOICES
+            <a href="#about" className="text-[#6b7280] text-sm hover:text-[#1a1a1a] dark:hover:text-[#fafaf6] transition">
+              ABOUT US
             </a>
-            <a href="#" className="text-[#6b7280] text-sm hover:text-[#1a1a1a] dark:hover:text-[#fafaf6] transition">
-              LEGACY
+            <a href="#contact" className="text-[#6b7280] text-sm hover:text-[#1a1a1a] dark:hover:text-[#fafaf6] transition">
+              CONTACT
             </a>
           </nav>
           <div className="flex items-center gap-4">
