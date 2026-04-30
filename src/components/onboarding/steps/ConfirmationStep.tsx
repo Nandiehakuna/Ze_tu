@@ -98,6 +98,13 @@ export default function ConfirmationStep({
         </motion.div>
       </div>
 
+      {/* Telegram linking optional instruction */}
+      <div className="bg-[#1a1a1a] rounded-lg p-4 space-y-3">
+        <p className="text-sm text-[#fafaf6]">
+          You are all set. Open Telegram and send <span className="font-semibold">/link &lt;your phone number&gt;</span> to <span className="font-semibold">@ZetuSendBot</span> to activate voice transfers. Linking is optional — you can still send transfers on the web.
+        </p>
+      </div>
+
       <motion.button
         onClick={onSubmit}
         disabled={loading}

@@ -32,6 +32,49 @@ export function supabaseClient() {
   return supabaseBrowserClient();
 }
 
+// Register a user record on the server (via API) and create an auth account
+export async function registerAndSignInWithPhone(phone: string) {
+  try {
+    const client = supabaseBrowserClient();
+    if (!client) throw new Error('Supabase browser client not initialized');
+
+    // 1) Ensure server-side users table has the phone record (upsert)
+    await fetch('/api/onboarding/create-user', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone }),
+    }).catch(() => null);
+
+    // 2) Construct email from phone digits and random password
+    const digits = phone.replace(/\D/g, '');
+    const email = `${digits}@zetu.app`;
+    const password = typeof crypto !== 'undefined' && (crypto as any).randomUUID
+      ? (crypto as any).randomUUID()
+      : `${Math.random().toString(36).slice(2)}${Date.now()}`;
+
+    // 3) Sign up via Supabase auth (creates auth user)
+    const { error: signUpError } = await client.auth.signUp({ email, password });
+    if (signUpError && signUpError.message.indexOf('already registered') === -1) {
+      // if it's some other error, surface it
+      return { success: false, error: signUpError.message };
+    }
+
+    // 4) Immediately sign in to establish session
+    const { data: signInData, error: signInError } = await client.auth.signInWithPassword({ email, password });
+    if (signInError) return { success: false, error: signInError.message };
+
+    const userId = signInData?.user?.id;
+    if (userId && typeof localStorage !== 'undefined') {
+      localStorage.setItem('zetu_user_id', userId);
+    }
+
+    return { success: true, userId };
+  } catch (err) {
+    console.error('registerAndSignInWithPhone error', err);
+    return { success: false, error: (err as Error)?.message || 'unknown' };
+  }
+}
+
 // Step 1: Send OTP to phone
 export async function sendOTP(phone: string) {
   try {

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import OnboardingStep from '@/components/onboarding/OnboardingStep';
 import { cardTransitionVariants } from '@/lib/animations';
-import { sendOTP, verifyOTP, saveOnboardingData } from '@/lib/supabase.client';
+import { registerAndSignInWithPhone, saveOnboardingData } from '@/lib/supabase.client';
 import type { OnboardingData } from '@/types';
 
 const ONBOARDING_STEPS = [
@@ -15,13 +15,6 @@ const ONBOARDING_STEPS = [
     description: 'Let\'s get started. What\'s your phone number?',
     type: 'phone',
     ai_message: 'Welcome to Zetu! We\'re excited to help you send money home seamlessly. Let\'s start with your phone number so we can verify your account.',
-  },
-  {
-    id: 2,
-    title: 'Verify OTP',
-    description: 'We sent a code to your phone. Enter it here.',
-    type: 'otp',
-    ai_message: 'Check your phone for the verification code. This keeps your account secure.',
   },
   {
     id: 3,
@@ -130,27 +123,18 @@ export default function OnboardingPage() {
   const handlePhoneSubmit = async (phone: string) => {
     setLoading(true);
     setError(null);
-    const result = await sendOTP(phone);
+
+    // create or upsert users table entry via server API and register an auth account
+    const registerResult = await registerAndSignInWithPhone(phone);
+
     setLoading(false);
 
-    if (result.success) {
+    if (registerResult.success) {
       setFormData({ ...formData, phone });
+      // Move directly to the name step (previously OTP was step 2)
       setCurrentStep(1);
     } else {
-      setError(result.error || 'An error occurred');
-    }
-  };
-
-  const handleOTPSubmit = async (otp: string) => {
-    setLoading(true);
-    setError(null);
-    const result = await verifyOTP(formData.phone, otp);
-    setLoading(false);
-
-    if (result.success) {
-      setCurrentStep(2);
-    } else {
-      setError(result.error || 'An error occurred');
+      setError(registerResult.error || 'An error occurred');
     }
   };
 
@@ -233,7 +217,6 @@ export default function OnboardingPage() {
               loading={loading}
               error={error}
               onPhoneSubmit={handlePhoneSubmit}
-              onOTPSubmit={handleOTPSubmit}
               onFieldSubmit={handleFieldSubmit}
               onRecipientSubmit={handleRecipientSubmit}
               onConfirmation={handleConfirmation}

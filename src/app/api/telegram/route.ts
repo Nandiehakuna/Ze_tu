@@ -116,7 +116,7 @@ export async function POST(request: Request) {
             user = { ...foundUser, telegram_chat_id: chatId };
             await sendTelegramMessage(
               chatId,
-              'Your Telegram is now linked to Zetu. You can now send with messages like "send £100 mum".'
+              'Linked. You can now send money by typing here.'
             );
             break;
           }

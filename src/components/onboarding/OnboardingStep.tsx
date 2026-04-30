@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import AIMessage from './AIMessage';
 import PhoneInput from './steps/PhoneInput';
-import OTPInput from './steps/OTPInput';
 import TextInput from './steps/TextInput';
 import SelectInput from './steps/SelectInput';
 import CurrencyInput from './steps/CurrencyInput';
@@ -20,7 +19,7 @@ interface OnboardingStepProps {
   loading: boolean;
   error: string | null;
   onPhoneSubmit: (phone: string) => void;
-  onOTPSubmit: (otp: string) => void;
+  // removed OTP step handler; OTP step removed from flow
   onFieldSubmit: (field: string, value: any) => void;
   onRecipientSubmit: (data: { name: string; phone: string }) => void;
   onConfirmation: () => void;
@@ -34,7 +33,7 @@ export default function OnboardingStep({
   loading,
   error,
   onPhoneSubmit,
-  onOTPSubmit,
+  
   onFieldSubmit,
   onRecipientSubmit,
   onConfirmation,
@@ -110,14 +109,7 @@ export default function OnboardingStep({
             />
           )}
 
-          {step.type === 'otp' && (
-            <OTPInput
-              loading={loading}
-              onSubmit={onOTPSubmit}
-              value={inputValue}
-              onChange={setInputValue}
-            />
-          )}
+          {/* OTP step removed from flow */}
 
           {step.type === 'text' && (
             <TextInput
