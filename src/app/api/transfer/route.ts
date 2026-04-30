@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabaseAdminClient } from '@/lib/supabase';
+import { supabaseAdminClient } from '@/lib/supabase.server';
 import { getGBPKESRate, calculateTransfer } from '@/lib/fx';
 import { createLightningInvoice } from '@/lib/bitnob';
 import { validateTransferRequest } from '@/lib/transfer';

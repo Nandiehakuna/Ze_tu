@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import DashboardNav from '@/components/dashboard/DashboardNav';
-import { supabaseClient } from '@/lib/supabase';
+import { supabaseClient } from '@/lib/supabase.client';
 import type { Transaction } from '@/types';
 
 type TransactionWithRecipient = Transaction & {

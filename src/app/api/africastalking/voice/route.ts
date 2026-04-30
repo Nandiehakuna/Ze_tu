@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { confirmRecipientReceipt } from '@/lib/africastalking';
-import { supabaseAdminClient } from '@/lib/supabase';
+import { supabaseAdminClient } from '@/lib/supabase.server';
 import { buildRecipientPrompt, resolveRecipientAudio } from '@/lib/voice';
 
 function xmlResponse(xml: string) {

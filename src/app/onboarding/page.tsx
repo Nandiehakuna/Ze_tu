@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import OnboardingStep from '@/components/onboarding/OnboardingStep';
 import { cardTransitionVariants } from '@/lib/animations';
-import { sendOTP, verifyOTP, saveOnboardingData } from '@/lib/supabase';
+import { sendOTP, verifyOTP, saveOnboardingData } from '@/lib/supabase.client';
 import type { OnboardingData } from '@/types';
 
 const ONBOARDING_STEPS = [

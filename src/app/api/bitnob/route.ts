@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { verifyBitnobWebhook } from '@/lib/bitnob';
-import { supabaseAdminClient } from '@/lib/supabase';
+import { supabaseAdminClient } from '@/lib/supabase.server';
 import { triggerRecipientCall } from '@/lib/africastalking';
 
 type BitnobWebhookPayload = {

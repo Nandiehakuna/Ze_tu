@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabaseAdminClient } from '@/lib/supabase';
+import { supabaseAdminClient } from '@/lib/supabase.server';
 import { processMessage } from '@/lib/claude';
 import { getGBPKESRate } from '@/lib/fx';
 import { phoneVariants } from '@/lib/phone';

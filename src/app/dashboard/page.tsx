@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { supabaseClient } from '@/lib/supabase';
+import { supabaseClient } from '@/lib/supabase.client';
 import DashboardNav from '@/components/dashboard/DashboardNav';
 import BalanceCard from '@/components/dashboard/BalanceCard';
 import RecentActivity from '@/components/dashboard/RecentActivity';

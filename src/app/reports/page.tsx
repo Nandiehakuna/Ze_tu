@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import DashboardNav from '@/components/dashboard/DashboardNav';
-import { supabaseClient } from '@/lib/supabase';
+import { supabaseClient } from '@/lib/supabase.client';
 import type { Transaction } from '@/types';
 
 type Row = Transaction & {

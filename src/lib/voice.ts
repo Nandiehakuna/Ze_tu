@@ -1,4 +1,4 @@
-import { supabaseAdminClient } from '@/lib/supabase';
+import { supabaseAdminClient } from '@/lib/supabase.server';
 
 type PromptInput = {
   recipientName: string;

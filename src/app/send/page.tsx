@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import DashboardNav from '@/components/dashboard/DashboardNav';
-import { supabaseClient } from '@/lib/supabase';
+import { supabaseClient } from '@/lib/supabase.client';
 import { calculateTransfer, formatKES } from '@/lib/fx';
 import type { Recipient, User } from '@/types';
 

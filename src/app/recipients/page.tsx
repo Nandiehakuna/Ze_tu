@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import DashboardNav from '@/components/dashboard/DashboardNav';
-import { supabaseClient } from '@/lib/supabase';
+import { supabaseClient } from '@/lib/supabase.client';
 import type { Recipient } from '@/types';
 
 type FormState = {
