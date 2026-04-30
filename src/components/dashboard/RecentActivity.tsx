@@ -58,8 +58,7 @@ export default function RecentActivity({ transactions, recipients }: RecentActiv
             className="pb-4 border-b border-gray-100 last:border-0"
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
-            layoutTransition={{ duration: 0.25 }}
-            transition={{ delay: 0.15 + idx * 0.05 }}
+            transition={{ delay: 0.15 + idx * 0.05, layout: { duration: 0.25 } }}
           >
             <div className="flex items-start justify-between mb-2">
               <div className="flex items-start gap-3 flex-1">

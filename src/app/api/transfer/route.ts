@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     }
 
     const fx = await getGBPKESRate();
-    const transfer = calculateTransfer(amountGBP, fx.rate);
+    const transfer = calculateTransfer(amountGBP!, fx.rate);
     const invoice = await createLightningInvoice(
       transfer.totalGBP,
       `Zetu transfer to ${recipient.name}`,

@@ -26,15 +26,16 @@ export async function triggerRecipientCall(transactionId: string) {
     .eq('id', transactionId)
     .single();
 
-  if (!tx?.recipients?.mpesa_number) return { ok: false, reason: 'recipient-not-found' };
-  const to = tx.recipients.mpesa_number;
+  const recipient = Array.isArray(tx?.recipients) ? tx?.recipients[0] : tx?.recipients;
+  if (!recipient?.mpesa_number) return { ok: false, reason: 'recipient-not-found' };
+  const to = recipient.mpesa_number;
   const callbackUrl = `${getBaseUrl()}/api/africastalking/voice?transactionId=${encodeURIComponent(transactionId)}`;
   const notification = buildRecipientPrompt({
-    recipientName: tx.recipients.name,
+    recipientName: recipient?.name || 'Ndugu',
     amountKES: tx.amount_kes,
-    language: tx.recipients.language || 'swahili',
+    language: recipient?.language || 'swahili',
   });
-  const audio = resolveRecipientAudio(tx.recipients.language || 'swahili', tx.voice_message_url || null);
+  const audio = resolveRecipientAudio(recipient?.language || 'swahili', tx.voice_message_url || null);
 
   const body = new URLSearchParams({
     username: auth.username,
@@ -81,11 +82,13 @@ export async function confirmRecipientReceipt(transactionId: string) {
     .select('id, users(telegram_chat_id), recipients(name)')
     .single();
 
-  const chatId = tx?.users?.telegram_chat_id;
+  const user = Array.isArray(tx?.users) ? tx?.users[0] : tx?.users;
+  const recipient = Array.isArray(tx?.recipients) ? tx?.recipients[0] : tx?.recipients;
+  const chatId = user?.telegram_chat_id;
   if (chatId) {
     await sendTelegramMessage(
       String(chatId),
-      `${tx?.recipients?.name || 'Your recipient'} confirmed receipt and heard your voice message.`
+      `${recipient?.name || 'Your recipient'} confirmed receipt and heard your voice message.`
     );
   }
 }

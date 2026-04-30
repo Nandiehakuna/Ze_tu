@@ -34,12 +34,15 @@ export async function POST(request: Request) {
     .eq('id', transactionId)
     .single();
 
+  // `recipients` is returned as an array from the DB; use first item if present
+  const recipient = Array.isArray(tx?.recipients) ? tx?.recipients[0] : tx?.recipients;
+
   const prompt = buildRecipientPrompt({
-    recipientName: tx?.recipients?.name || 'Ndugu',
+    recipientName: recipient?.name || 'Ndugu',
     amountKES: tx?.amount_kes || 0,
-    language: tx?.recipients?.language || 'swahili',
+    language: recipient?.language || 'swahili',
   });
-  const audio = resolveRecipientAudio(tx?.recipients?.language || 'swahili', tx?.voice_message_url || null);
+  const audio = resolveRecipientAudio(recipient?.language || 'swahili', tx?.voice_message_url || null);
 
   const say = `<Say>${prompt.message}</Say>`;
   const languageAudio = audio.languageAudioUrl ? `<Play url="${audio.languageAudioUrl}" />` : '';
